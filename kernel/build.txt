@@ -1,0 +1,18 @@
+# gcc compilation - the latest config from 7.0.0 (extra)
+
+make defconfig
+make menuconfig
+make -j$(nproc) && make modules_install
+make install
+
+# llvm/clang compilation - the latest config from 7.0.0
+
+make mrproper
+LLVM=1 make defconfig
+LLVM=1 make menuconfig
+make -j$(nproc) LLVM=1 KCFLAGS="-march=native -O2 -pipe" && make LLVM=1 modules_install
+make LLVM=1 install
+
+# update
+
+make LLVM=1 oldconfig

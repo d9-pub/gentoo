@@ -1,0 +1,1 @@
+net-misc/networkmanager elogind dhcpcd -modemmanager -ppp -wifi -wext
